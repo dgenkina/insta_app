@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Skeleton application demoing Heroku and Flask integration.">
+    <meta name="author" content="@gotoariel">
+    <!-- <link rel="icon" href="favicon.ico"> -->
+
+    <title>Sup, bro</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+            <style>
+        * {
+          box-sizing: border-box;
+        }
+        
+        /* Create two equal columns that floats next to each other */
+        .pad{
+            float: left;
+            width: 2%;
+            padding: 10px;
+            }
+        .column1 {
+          float: left;
+          width: 30%;
+          padding: 10px;
+        }
+        
+        .column2 {
+          float: left;
+          width: 68%;
+          padding: 10px;
+        }
+        
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        </style>
+  </head>
+  <body>
+
+        <h2>Optimize your hashtag game</h2>
+
+        <div class="row">
+        <div class="pad"></div>
+          <div class="column1" >
+            	<p>
+                	<form action="/recommend" method="POST">
+                		<fieldset>
+                			<legend>Which tags do you want to use?</legend>
+                			<dl>
+                                {% for field in form if field.type not in ["HiddenField", "CSRFTokenField"] %}
+                                <dt>{{ field.label }}</dt>
+                                <dd>{{ field }}</dd>
+                                {% endfor %}
+                            </dl>
+                			<p><input type="Submit" value="Plot"></p>
+                		</fieldset>
+                	</form> 
+            	</p>
+	            {% if recommended is not none %}
+    	            <legend>Here are some suggestions:</legend>
+    	            {% for r in recommended %}
+                	<dt>{{ r }}</dt>
+                	{% endfor %}
+            	{% else %}
+                	<p> </p>
+            	{%endif %}
+          </div>
+          <div class="column2">
+            	{% if plot is not none %}
+                	{{ plot|safe }}
+            	{% else %}
+                	<p> </p>
+            	{%endif %}
+          </div>
+        </div>
+
+
+	
+
+
+  </body>
+</html>
