@@ -24,8 +24,12 @@ from bokeh.models import ColumnDataSource
 
 savename = 'instagraph_all/instagraph_all'
 
-with open(savename, 'rb') as f:
-    graph = pickle.load(f)
+chunks = []
+for i in range(5):
+    with open(savename+str(i), 'rb') as fu:
+        chunks.append(fu.read())
+
+graph = pickle.loads(b''.join(chunks))
     
 def nodes_connected(graph, u, v):
      return u in graph.neighbors(v)
