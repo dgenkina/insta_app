@@ -33,7 +33,7 @@ from bokeh.models import ColumnDataSource
 
 savename = 'instagraph_all/instagraph_100K'
 with open(savename, 'rb') as f:
-    graph = pickle.load(savename)
+    graph = pickle.load(f)
     
 def nodes_connected(graph, u, v):
      return u in graph.neighbors(v)
