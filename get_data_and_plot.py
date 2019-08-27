@@ -21,15 +21,19 @@ from bokeh.models.annotations import LabelSet
 from bokeh.palettes import Spectral4
 from bokeh.models import ColumnDataSource
 
+#
+#savename = 'instagraph_all/instagraph_all'
+#
+#chunks = []
+#for i in range(5):
+#    with open(savename+str(i), 'rb') as fu:
+#        chunks.append(fu.read())
+#
+#graph = pickle.loads(b''.join(chunks))
 
-savename = 'instagraph_all/instagraph_all'
-
-chunks = []
-for i in range(5):
-    with open(savename+str(i), 'rb') as fu:
-        chunks.append(fu.read())
-
-graph = pickle.loads(b''.join(chunks))
+savename = 'instagraph_all/instagraph_100K'
+with open(savename, 'rb') as f:
+    graph = pickle.load(savename)
     
 def nodes_connected(graph, u, v):
      return u in graph.neighbors(v)
